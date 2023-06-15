@@ -27,7 +27,15 @@ public class SinContratacionState implements IState{
     }
 
     @Override
-    public void pagarFactura(IFactura factura)  {
+    public void pagarFactura(IFactura factura) {
+        int i=0;
+        while (i<personaFisica.getFacturasAPagar().size() && personaFisica.getFacturasAPagar().get(i) != factura) {
+            i++;
+        }
+        if (i<personaFisica.getFacturasAPagar().size()){ //esta
+            IFactura facturaPagada = personaFisica.getFacturasAPagar().remove(i);
+            personaFisica.getFacturasPagadas().add(facturaPagada);
+        }
     }
 
     @Override
